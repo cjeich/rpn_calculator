@@ -17,6 +17,10 @@ This executable accepts input from stdin
 $ ./calculator.rb < list_of_args.txt
 ```
 
+### Additions to the spec
+- __help__ - will give you a list of available commands
+- __clear__ - clears previous inputs
+
 ## Tests
 Tests for this project are written in rspec. The can be run from the root directory with rspect
 
