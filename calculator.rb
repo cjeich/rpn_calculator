@@ -7,5 +7,6 @@ calc = Calculator.new
 
 # Start the loop
 Repl::repl do |input|
-  calc.add_input input
+  input = calc.add_input(input)
+  input.is_a?(Numeric) ? sprintf("%g", input) : input
 end

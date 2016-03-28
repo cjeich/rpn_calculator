@@ -36,22 +36,22 @@ RSpec.describe Calculator, type: :model do
   context "processes the commands" do
     it "adds values" do
       ['1','2','3'].each { |i| @c.add_input i }
-      expect(@c.add_input('+')).to be 6
+      expect(@c.add_input('+')).to be 6.0
     end
 
     it "subtracts values" do
       ['10','2','3'].each { |i| @c.add_input i }
-      expect(@c.add_input('-')).to eql 5
+      expect(@c.add_input('-')).to eql 5.0
     end
 
     it "divides values" do
       [15, 5].each { |i| @c.add_input i }
-      expect(@c.add_input('/')).to eql 3
+      expect(@c.add_input('/')).to eql 3.0
     end
 
     it "multiplies values" do
       [1, 2, 3].each { |i| @c.add_input i }
-      expect(@c.add_input('*')).to eql 6
+      expect(@c.add_input('*')).to eql 6.0
     end
 
     it "returns an error message when an invalid value is given" do
@@ -63,7 +63,7 @@ RSpec.describe Calculator, type: :model do
 
   it "return 0 when attempted to divide by 0" do
     [0, 0].each { |i| @c.add_input i }
-    expect(@c.add_input('/')).to eql "You cannot divide by 0"
+    expect(@c.add_input('/').nan?).to be true
   end
 
   it "clears inputs when given clear" do
@@ -91,17 +91,17 @@ help  - show this help message
 
   it "handle a single input" do
     @c.add_input(345)
-    expect(@c.add_input :+ ).to eql 345
+    expect(@c.add_input :+ ).to eql 345.0
   end
 
   it "handles spaces arount the input" do
     @c.add_input "    234    "
-    expect(@c.args[0]).to be 234
+    expect(@c.args[0]).to be 234.0
   end
 
   it "handles other whitespace arount the input" do
     @c.add_input "    234    \r\n"
-    expect(@c.args[0]).to be 234
+    expect(@c.args[0]).to be 234.0
   end
 
   context "handles negative numbers" do
@@ -111,7 +111,7 @@ help  - show this help message
 
     it "when it has negative integers" do
       @c.add_input( -6 )
-      expect( @c.add_input(:+) ).to eql 0
+      expect( @c.add_input(:+) ).to eql 0.0
     end
 
     it "when it has some negative floats" do

@@ -38,14 +38,11 @@ help  - show this help message
   private
   def process_command(command)
     @args = [@args.inject(command)]
-    sprintf("%g", @args[0])
-
-    rescue ZeroDivisionError
-      "You cannot divide by 0"
+    @args[0]
   end
 
   def store_input(input)
     @args << input
-    sprintf("%g", @args.last)
+    @args.last
   end
 end
